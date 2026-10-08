@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="text-2xl font-semibold">{{ narrative.title }}</h1>
+  <p class="mt-2 text-sm text-zinc-400">{{ narrative.summary }} State {{ narrative.state }}.</p>
+  <table class="mt-4 w-full text-left text-sm">
+    <thead class="text-zinc-500"><tr><th>As of</th><th>Mint</th><th>Rank</th><th>Score</th><th>Resolution</th></tr></thead>
+    <tbody>
+      {% for c in candidates %}
+        <tr class="border-t border-line">
+          <td class="py-2">{{ c.as_of }}</td>
+          <td><a href="/tokens/{{ c.token.mint }}/">{{ c.token.mint }}</a></td>
+          <td>{{ c.rank }}</td>
+          <td>{{ c.score }}</td>
+          <td>{{ c.resolution }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

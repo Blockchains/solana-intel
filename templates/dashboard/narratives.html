@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="text-2xl font-semibold">Narratives</h1>
+  <ul class="mt-4 space-y-2 text-sm">
+    {% for row in rows %}
+      <li><a class="underline" href="/narratives/{{ row.narrative_id }}/">{{ row.title }}</a> · {{ row.state }} · synthetic={{ row.synthetic }}</li>
+    {% empty %}
+      <li class="text-zinc-400">None.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

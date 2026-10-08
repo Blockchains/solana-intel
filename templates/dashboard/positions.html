@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="text-2xl font-semibold">Positions</h1>
+  <p class="mt-2 text-sm text-zinc-400">Average-cost paper accounting. Fees included. Candle highs are not fills.</p>
+  {% for row in rows %}
+    <article class="mt-4 rounded-xl border border-line bg-panel p-4 text-sm">
+      <div class="font-medium">{{ row.position.token.symbol }} · {{ row.position.kind }} · {{ row.position.status }}</div>
+      <p class="mt-2 text-zinc-300">Qty {{ row.pnl.quantity }} · realised {{ row.pnl.realised_usd }} · unrealised {{ row.pnl.unrealised_usd }}</p>
+      <p class="text-zinc-500">{{ row.position.notes }}</p>
+    </article>
+  {% empty %}
+    <p class="mt-4 text-sm text-zinc-400">No positions.</p>
+  {% endfor %}
+{% endblock %}

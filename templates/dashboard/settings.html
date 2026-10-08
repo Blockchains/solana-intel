@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="text-2xl font-semibold">Settings</h1>
+  <p class="mt-2 text-sm text-zinc-400">Mode {{ mode }}. Portfolio reference is {% if risk.portfolio_configured %}set{% else %}absent — position size in currency is not invented{% endif %}.</p>
+  <dl class="mt-4 text-sm">
+    <div>Initial allocation {{ risk.initial_allocation_pct }}% of portfolio reference. That is what “small” means when a reference value is configured.</div>
+    <div class="mt-2">Max position {{ risk.max_position_pct }}%. Aggregate {{ risk.aggregate_exposure_pct }}%. Max adds {{ risk.max_adds }}.</div>
+    <div class="mt-2">Quote max age {{ risk.quote_max_age_seconds }}s. Min liquidity {{ risk.min_liquidity_usd }} USD. Max impact {{ risk.max_price_impact_pct }}%.</div>
+  </dl>
+{% endblock %}

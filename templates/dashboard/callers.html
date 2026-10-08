@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="text-2xl font-semibold">Callers</h1>
+  <p class="mt-2 text-sm text-zinc-400">Repeated mentions of one mint are not separate successes. Sample size is stored, not a reputation score.</p>
+  <ul class="mt-4 text-sm">
+    {% for row in rows %}
+      <li>{{ row.handle }} · {{ row.platform }} · sample {{ row.sample_size }}</li>
+    {% empty %}<li class="text-zinc-400">None.</li>{% endfor %}
+  </ul>
+{% endblock %}

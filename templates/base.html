@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Solana Intel{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { ink: '#0c0f14', panel: '#151a22', line: '#2a3140', amber: '#e2a23b' } } } }
+  </script>
+</head>
+<body class="h-full bg-ink text-zinc-100">
+  <div class="min-h-full md:grid md:grid-cols-[220px_1fr]">
+    <aside class="border-b md:border-b-0 md:border-r border-line bg-panel p-4">
+      <div class="text-xs uppercase tracking-[0.2em] text-amber">Solana Intel</div>
+      <div class="mt-1 text-sm text-zinc-400">Decision support · {{ operating_mode }}</div>
+      <nav class="mt-6 flex gap-3 overflow-x-auto md:block md:space-y-2 text-sm">
+        {% for label, href in nav %}
+          <a class="block text-zinc-300 hover:text-white" href="{{ href }}">{{ label }}</a>
+        {% endfor %}
+      </nav>
+      <p class="mt-8 text-xs text-zinc-500">Interface refresh is a manual reload or API poll. It is not a WebSocket stream.</p>
+    </aside>
+    <main class="p-4 md:p-8">
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+</body>
+</html>

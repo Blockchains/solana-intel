@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Overview{% endblock %}
+{% block content %}
+  <h1 class="text-2xl font-semibold">Overview</h1>
+  <p class="mt-2 max-w-2xl text-sm text-zinc-400">Ranked situations from the latest decision per mint. Paper mode only. A card is not a fill and not a safety certificate.</p>
+  <div class="mt-6 space-y-4">
+    {% for card in cards %}
+      <article class="rounded-xl border border-line bg-panel p-4">
+        <div class="flex flex-wrap items-baseline justify-between gap-2">
+          <div class="text-lg font-semibold text-amber">{{ card.action }}</div>
+          <div class="text-xs uppercase tracking-wide text-zinc-400">{{ card.operational_status }}</div>
+        </div>
+        <div class="mt-2 text-sm">
+          <a class="text-white underline" href="/tokens/{{ card.token.mint }}/">{{ card.token.symbol }} · {{ card.token.mint }}</a>
+        </div>
+        <dl class="mt-3 grid gap-2 text-sm md:grid-cols-2">
+          <div><dt class="text-zinc-500">Opportunity</dt><dd>{{ card.opportunity_type|default:"—" }}</dd></div>
+          <div><dt class="text-zinc-500">Changed</dt><dd>{{ card.what_changed }}</dd></div>
+          <div><dt class="text-zinc-500">Why now</dt><dd>{{ card.why_now }}</dd></div>
+          <div><dt class="text-zinc-500">Risks</dt><dd>{{ card.main_risks }}</dd></div>
+          <div><dt class="text-zinc-500">Invalidation</dt><dd>{{ card.invalidation }}</dd></div>
+          <div><dt class="text-zinc-500">Freshness</dt><dd>{{ card.as_of }} · synthetic={{ card.synthetic }}</dd></div>
+        </dl>
+      </article>
+    {% empty %}
+      <p class="text-sm text-zinc-400">No decisions yet. Run <code>python manage.py run_synthetic_scenario</code>.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

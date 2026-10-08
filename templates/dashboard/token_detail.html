@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="text-2xl font-semibold">{{ token.symbol }}</h1>
+  <p class="mt-1 font-mono text-xs text-zinc-400">{{ token.chain }}:{{ token.mint }}</p>
+  <p class="mt-2 text-sm text-zinc-400">{{ token.discovery_provenance }}. Mint authority revoked={{ token.mint_authority_revoked }}. Freeze active={{ token.freeze_authority_active }}.</p>
+  <h2 class="mt-6 text-lg">Decisions</h2>
+  <ul class="mt-2 space-y-2 text-sm">
+    {% for d in decisions %}
+      <li class="rounded border border-line p-2">{{ d.as_of }} · {{ d.action }} · {{ d.operational_status }} · {{ d.why_now }}</li>
+    {% endfor %}
+  </ul>
+  <h2 class="mt-6 text-lg">Derived 1m candles</h2>
+  <p class="text-xs text-zinc-500">Internally derived. Empty minutes are omitted, not fabricated.</p>
+  <ul class="mt-2 text-xs font-mono text-zinc-300">
+    {% for c in candles %}
+      <li>{{ c.bucket_start }} O {{ c.open }} H {{ c.high }} L {{ c.low }} C {{ c.close }} V {{ c.volume_usd }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

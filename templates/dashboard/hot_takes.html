@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="text-2xl font-semibold">Hot Takes</h1>
+  <p class="mt-2 text-sm text-zinc-400">Persistent watchlist. NO BUY can remain watched. Positions outrank discovery when priority is higher.</p>
+  <div class="mt-4 overflow-x-auto">
+    <table class="w-full text-left text-sm">
+      <thead class="text-zinc-500"><tr><th>Token</th><th>Reason</th><th>Priority</th><th>Last change</th><th>Next check</th></tr></thead>
+      <tbody>
+        {% for row in rows %}
+          <tr class="border-t border-line">
+            <td class="py-2"><a href="/tokens/{{ row.token.mint }}/">{{ row.token.symbol }}</a></td>
+            <td>{{ row.entry_reason }}</td>
+            <td>{{ row.priority }}</td>
+            <td>{{ row.last_change }}</td>
+            <td>{{ row.next_check }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

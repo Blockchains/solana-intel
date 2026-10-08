@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="text-2xl font-semibold">Research</h1>
+  <p class="mt-2 text-sm text-zinc-400">One synthetic path is not a walk-forward edge.</p>
+  {% for row in rows %}
+    <article class="mt-4 rounded border border-line p-3 text-sm">
+      <div>{{ row.name }} · {{ row.policy }} · {{ row.outcome }}</div>
+      <pre class="mt-2 overflow-x-auto text-xs text-zinc-300">{{ row.detail }}</pre>
+      <p class="text-zinc-500">{{ row.note }}</p>
+    </article>
+  {% endfor %}
+{% endblock %}
